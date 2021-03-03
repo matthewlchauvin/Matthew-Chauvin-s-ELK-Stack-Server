@@ -25,7 +25,7 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 Load balancing ensures that the application will be highly stable, in addition to restricting access to the network.
 The load balancer ensures that the network won't be overwhelmed, helping protect the network from denial of service attacks._
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the logs and system traffic.
 
 
 The configuration details of each machine may be found below.
