@@ -5,7 +5,7 @@ The files in this repository were used to configure the network depicted below.
 
 https://github.com/matthewlchauvin/Matthew-Chauvin-s-ELK-Stack-Server/blob/main/diagrams%20%26%20screenshots/Matthew%20Chauvin's%20Cloud%20Server.jpg
 
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the _____ file may be used to install only certain pieces of it, such as Filebeat.
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the DVWA file may be used to install only certain pieces of it, such as Filebeat.
 
 https://github.com/matthewlchauvin/Matthew-Chauvin-s-ELK-Stack-Server/tree/main/ansible
 
@@ -41,7 +41,7 @@ The configuration details of each machine may be found below.
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the ELK Server machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+Only the Jump Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 72.199.137.44
 
 Machines within the network can only be accessed by machines on my home network.
@@ -50,9 +50,9 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes                 | 72.199.137.44        |
-| DVWA-VM1 | No                  | 10.0.0.4             |
-| DVWA-VM2 | No                  | 10.0.0.4             |
+| Jump Box | No                  | 72.199.137.44        |
+| Web 1    | No                  | 10.0.0.4             |
+| Web 2    | No                  | 10.0.0.4             |
 | ELKserver| No                  | 10.0.0.4             |
 
 ### Elk Configuration
@@ -60,9 +60,11 @@ A summary of the access policies in place can be found in the table below.
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it allows the process to easily be repeated when setting up anothernetwork.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Install Docker
+- Install python3-pip
+- Install Docker python module
+- Set the vm.max_map_count to 262144
+- Download and launch a docker elk container
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
@@ -73,7 +75,8 @@ This ELK server is configured to monitor the following machines:
 Web 1 &2 VMs
 
 We have installed the following Beats on these machines:
-- _TODO: Specify which Beats you successfully installed_
+- Filebeat
+- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
 - _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
@@ -82,9 +85,9 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the _____ file to _____.
-- Update the _____ file to include...
-- Run the playbook, and navigate to ____ to check that the installation worked as expected.
+- Copy the install-elk.yml and filebeat-playbook.yml file to /etc/ansible
+- Update the install-elk.yml and filebeat-playbook.yml file to include the machine you want use the playbooks on by changing the hosts name on the 3rd line
+- Run the playbook, and navigate to http://[your.VM.IP]:5601/app/kibana to check that the installation worked as expected
 
 _TODO: Answer the following questions to fill in the blanks:_
 - _Which file is the playbook? Where do you copy it?_
